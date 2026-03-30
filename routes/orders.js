@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
+/**
+ * @swagger
+ * /api/orders:
+ *   get:
+ *     summary: Get all orders
+ *     description: Returns a list of the first 20 orders in ShopEase
+ *     responses:
+ *       200:
+ *         description: A list of orders
+ */
 router.get('/', async (req, res) => {
     try {
         const result = await pool.query(`
