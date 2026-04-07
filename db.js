@@ -1,11 +1,12 @@
 const { Pool } = require('pg');
+require('dotenv').config();
 
 const pool = new Pool({
-    connectionString: `postgresql://postgres:password@localhost:5433/SHOPEASE`
+    connectionString: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
 });
 
 pool.connect()
     .then(() => console.log('✅ Connected to ShopEase PostgreSQL database!'))
-    .catch(err => console.error('❌ Connection error:', err.message));
+    .catch(err => console.error('❌ Connection error:', err));
 
 module.exports = pool;
